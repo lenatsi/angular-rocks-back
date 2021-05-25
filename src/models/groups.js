@@ -7,11 +7,11 @@ const GroupSchema = new Schema({
   gender: String,
   description: String,
   photo: String,
-  //sings: { type: Schema.Types.ObjectId, ref: 'sing'},
+  songs: [{type: Schema.Types.ObjectId, ref: 'sing' }],
   savedAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 })
 
-const GroupModel = mongoose.model('Groups', GroupSchema)
+const GroupModel = mongoose.model('groups', GroupSchema)
 
 module.exports = GroupModel

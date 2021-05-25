@@ -44,6 +44,7 @@ controller.getGroup = async (req, res) => {
   if (id) {
     try {
       const group = await Group.findById(id)
+      console.log(group)
       res.json(group)
     } catch (err) {
       res.status(500).send(err)
@@ -90,6 +91,7 @@ controller.getGroups = async (req, res) => {
         res.status(500).send("ocurrió un error")
     } 
 }
+
 controller.updateGroup = async (req, res) => {
   const name = req.body.name
   const foundationDate = req.body.foundationDate
