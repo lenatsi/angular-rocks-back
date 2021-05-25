@@ -16,7 +16,7 @@ router.post("/login", userController.login)
 router.get("/user", passport.auth, userController.userDetail)
 
 router.get('/songs', songController.getSings)
-router.post('/song', songController.saveSing)
+router.post('/song', passport.auth, songController.saveSing)
 router.get('/group/:id/songs', songController.getGroupSongs)
 
 module.exports = router

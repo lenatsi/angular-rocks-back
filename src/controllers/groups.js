@@ -9,13 +9,10 @@ controller.saveGroup = async (req, res) => {
   const gender = req.body.gender
   const photo = req.body.photo
   
-
-
   const validation = validator.validate(req.body)
 
   if (validation.error) {
     const error = validation.error.details[0].message
-    console.log(error)
     res.status(400).send(error)
     return
   }else{
@@ -44,7 +41,6 @@ controller.getGroup = async (req, res) => {
   if (id) {
     try {
       const group = await Group.findById(id)
-      console.log(group)
       res.json(group)
     } catch (err) {
       res.status(500).send(err)
@@ -57,9 +53,7 @@ controller.getGroups = async (req, res) => {
   const filter = req.query.filter
   const startDate = req.query.startDate
   const endDate = req.query.endDate
-  console.log(filter)
-  console.log(startDate)
-  console.log(endDate)
+  
   const filters = []
     if (filter) {
         filters.push({ name: new RegExp(filter, 'i') })
@@ -71,7 +65,6 @@ controller.getGroups = async (req, res) => {
                 $lt: new Date(endDate)
             }
         })
-        console.log(filters)
     }
     try {
         let group = {}
@@ -81,13 +74,11 @@ controller.getGroups = async (req, res) => {
                     $match: {$and: filters }
                 }
             ])
-            console.log(filters)
         } else {
             group = await Group.find()
         }
         res.send(group)
     } catch (error) {
-        console.log(error)
         res.status(500).send("ocurrió un error")
     } 
 }
@@ -100,17 +91,10 @@ controller.updateGroup = async (req, res) => {
   const photo = req.body.photo
   const groupId = req.params.id
 
-  const validation = validator.validate(req.body)
-
-  if(validation.error) {
-    const error = validation.error.details[0].message
-    console.log(error)
-    res.status(400).send(error)
-    return
-  }else{
+  
     if (groupId) {
       try {
-        await Groups.findByIdAndUpdate( groupId,{
+        await Group.findByIdAndUpdate( groupId,{
           name: name,
           foundationDate: foundationDate,
           description: description,
@@ -122,9 +106,6 @@ controller.updateGroup = async (req, res) => {
       } catch (err) {
         res.status(500).send(err)
       }
-    } else {
-      res.status(400).send()
-    }
   }
   
 }

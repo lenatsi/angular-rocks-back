@@ -16,7 +16,6 @@ controller.signup = async (req, res) => {
     const data = await User.findOne({ email: email })
     res.send({ status: 'ok', data: data })
   } catch (err) {
-    console.log(err)
     res.status(500).send(err.message)
   }
 }
@@ -47,7 +46,6 @@ controller.login = async (req, res) => {
       expires_in: dataToken[1],
     })
   } catch (err) {
-    console.log(err)
     res.status(401).send('Credenciales incorrectas')
     return
   }

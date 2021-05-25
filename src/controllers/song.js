@@ -12,7 +12,6 @@ controller.saveSing = async (req, res) => {
 
   if (validation.error) {
     const error = validation.error.details[0].message
-    console.log(error)
     res.status(400).send(error)
     return
   }else{
@@ -66,7 +65,6 @@ controller.getSings = async (req, res) => {
       const songs = await Sing.find({name:new RegExp(filter, 'i')}).populate('artist')
       res.json(songs)
   } catch (err) {
-      console.log(err)
       res.status(500).send(err)
   }
   }else {
