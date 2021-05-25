@@ -11,7 +11,7 @@ const cors = require('cors')
 
 
 var corsOption = {
-    origin: '*',
+    origin: 'https://front-angular-rocks.vercel.app/',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     exposedHeaders: ['x-auth-token', 'content-type', 'X-Requested-With', 'Authorization', 'Accept', 'Origin'],
