@@ -8,22 +8,15 @@ const path = require('path');
 const connection = require('./src/connection')
 const passport = require('passport')
 const cors = require('cors')
-const { access } = require('fs')
-const { allow } = require('joi')
 
 
 var corsOption = {
-    origin: true,
+    origin: 'https://front-angular-rocks.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     exposedHeaders: ['x-auth-token', 'content-type', 'X-Requested-With', 'Authorization', 'Accept', 'Origin'],
  }
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
-    next();
-});
+
 
 app.use(cors(corsOption))
 app.use(passport.initialize())
