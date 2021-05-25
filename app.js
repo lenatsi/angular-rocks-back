@@ -11,7 +11,7 @@ const cors = require('cors')
 
 
 var corsOption = {
-    origin: '*',
+    origin: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     exposedHeaders: ['x-auth-token', 'content-type', 'X-Requested-With', 'Authorization', 'Accept', 'Origin'],
  }
@@ -27,7 +27,7 @@ app.use(express.urlencoded({
 connection.then(() => {
     console.log('Conectado a la base de datos...')
 
-    app.listen(process.env.PORT || 80 || 3000, () => {
+    app.listen(process.env.PORT || 3000, () => {
         console.log("Servidor iniciado")
     })
 }).catch(function (err) {
